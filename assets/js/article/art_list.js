@@ -21,9 +21,9 @@ $(function () {
     }
     var q = {
         pagenum: 1,
-        pagesize: 2, // 每页显示几条数据，默认每页显示2条
-        cate_id: '', // 文章分类的 Id
-        state: '' // 文章的发布状态
+        pagesize: 2,
+        cate_id: '',
+        state: ''
     }
     function getList() {
         axios.get('/my/article/list', { params: q }).then(res => {
@@ -33,22 +33,19 @@ $(function () {
                 console.log(res);
                 var htmlStr = template('tpl-table', res)
                 $('tbody').html(htmlStr)
-                // 渲染分页器
                 renderPage(res.total)
             }
         })
     }
     getList();
-    // 渲染分页器函数
     function renderPage(total) {
         laypage.render({
             elem: 'pageBox',
             count: total,
             limit: q.pagesize,
-            curr: q.pagenum, // 设置默认被选中的分页
+            curr: q.pagenum,
             layout: ['count', 'limit', 'prev', 'page', 'next', 'skip'],
             limits: [2, 3, 5, 10],
-            // theme: '#c00',
             jump: function (obj, first) {
                 q.pagenum = obj.curr
                 q.pagesize = obj.limit

@@ -8,9 +8,7 @@ $(function () {
             if (res.status !== 0) {
                 layer.msg(res.message)
             } else {
-                // 表单赋值
                 form.val('form-edit', res.data)
-                // 把获取到的封面图片加载到裁剪区
                 $image.cropper('replace', 'http://api-breakingnews-web.itheima.net' + res.data.cover_img)
             }
             initEditor();
@@ -52,7 +50,7 @@ $(function () {
             layer.msg('请选择图片 !')
         }
         $image
-            .cropper('destroy') 
+            .cropper('destroy')
             .prop('src', newImgURL)
             .cropper({
                 aspectRatio: 10 / 7,
@@ -71,7 +69,7 @@ $(function () {
                 height: 280
             })
             .toBlob(function (blob) {
-             const fd = new FormData(form)
+                const fd = new FormData(form)
                 fd.append('state', state)
                 fd.append('Id', id)
                 fd.append('cover_img', blob)

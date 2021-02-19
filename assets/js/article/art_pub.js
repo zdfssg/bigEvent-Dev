@@ -28,7 +28,6 @@ $(function () {
     $('#coverFile').change(function () {
         var files = this.files;
         if (files.length > 0) {
-            // 把文件转换成url的形式
             var newImgURL = URL.createObjectURL(files[0]);
         } else {
             layer.msg('请选择图片 !')
